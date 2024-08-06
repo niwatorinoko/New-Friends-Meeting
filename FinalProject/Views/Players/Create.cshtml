@@ -1,0 +1,106 @@
+﻿@model FinalProject.Models.Player
+
+@{
+    ViewData["Title"] = "Create";
+    var photoOptions = new List<string> { "1", "2", "3", "4", "5" };
+}
+
+<h1>Create</h1>
+
+<h4>Player</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <div class="form-group mb-3">
+                <label asp-for="PlayerId" class="form-label"></label>
+                <input asp-for="PlayerId" class="form-control" />
+                <span asp-validation-for="PlayerId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="PlayerName" class="form-label"></label>
+                <input asp-for="PlayerName" class="form-control" />
+                <span asp-validation-for="PlayerName" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="City" class="form-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Sex" class="form-label"></label>
+                <select asp-for="Sex" class="form-control">
+                    <option value="0">Female</option>
+                    <option value="1">Male</option>
+                </select>
+                <span asp-validation-for="Sex" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Birthday" class="form-label"></label>
+                <input asp-for="Birthday" class="form-control" type="date" />
+                <span asp-validation-for="Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label">Photo</label>
+                <div id="photoPreview" class="d-flex justify-content-around">
+                    @foreach (var photo in photoOptions)
+                    {
+                        <img src="~/Images/@(photo).png" alt="Photo @photo" class="img-thumbnail" style="width: 100px; height: 100px;" data-photo="@photo" />
+                    }
+                </div>
+                <input type="hidden" asp-for="Photo" id="selectedPhoto" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="PlayerPassword" class="form-label"></label>
+                <input asp-for="PlayerPassword" class="form-control" />
+                <span asp-validation-for="PlayerPassword" class="text-danger"></span>
+            </div>
+            <div class="d-grid">
+                <input type="submit" value="Create" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .form-label {
+        font-weight: bold;
+    }
+
+    .img-thumbnail {
+        object-fit: cover;
+        cursor: pointer;
+    }
+
+        .img-thumbnail:hover {
+            transform: scale(1.1);
+            transition: transform 0.2s;
+        }
+
+        .img-thumbnail.selected {
+            border: 3px solid #007bff;
+        }
+
+    .btn-block {
+        width: 100%;
+    }
+</style>
+
+<script>
+    document.querySelectorAll('#photoPreview img').forEach(img => {
+        img.addEventListener('click', function () {
+            document.querySelectorAll('#photoPreview img').forEach(photo => {
+                photo.classList.remove('selected');
+            });
+            this.classList.add('selected');
+            document.getElementById('selectedPhoto').value = this.getAttribute('data-photo');
+        });
+    });
+</script>

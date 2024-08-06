@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Select Place";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="mb-0">Select Place</h1>
+</div>
+
+
+        <form method="post" action="@Url.Action("SelectName")">
+            <div class="form-group mb-3">
+                <label for="place" class="form-label">Place</label>
+                <select id="place" name="place" class="form-control">
+                    @foreach (var item in ViewBag.Mylist)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+            </div>
+            <div class="d-grid gap-2">
+                <input type="submit" value="Search" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+
+<style>
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .btn-block {
+        width: 100%;
+    }
+</style>

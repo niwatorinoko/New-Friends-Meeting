@@ -1,0 +1,88 @@
+﻿@model IEnumerable<FinalProject.Models.Post>
+
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="mb-0">Search Result</h1>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</div>
+
+
+@if (Model.Count() == 0)
+{
+    <div class="alert alert-info">
+        <strong>無符合資料</strong>
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-12 mb-3">
+                <div class="card tweet-card" onclick="location.href='@Url.Action("Details", "Posts", new { id = item.PostId })'">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <img src="~/Images/@(item.Player.Photo).png" alt="Player Photo" class="tweet-icon rounded-circle" />
+                            <div class="ms-3">
+                                <a href="@Url.Action("Details", "Players", new { id = item.PlayerId })" class="text-decoration-none text-muted">@Html.DisplayFor(modelItem => item.Player.PlayerName)</a>
+                                <h5 class="card-title mt-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                <p class="card-text">@Html.DisplayFor(modelItem => item.Content)</p>
+                                <p class="card-text"><small class="text-muted">Place: @Html.DisplayFor(modelItem => item.Place)</small></p>
+                                <p class="card-text">
+                                    <small class="text-muted">Date: @item.MeetingDateTime?.ToString("yyyy-MM-dd HH:mm")</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div>
+        <a asp-action="SelectQuery">Back to Search</a>
+    </div>
+}
+
+
+
+
+
+<!-- SNSスタイルのCSS -->
+<style>
+    .tweet-card {
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .tweet-card:hover {
+            background-color: #f8f9fa;
+        }
+
+    .tweet-icon {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+    }
+
+    .card-title {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .card-text {
+        font-size: 0.9em;
+        color: #555;
+    }
+
+    .text-muted a {
+        color: inherit;
+    }
+
+        .text-muted a:hover {
+            color: #007bff;
+        }
+</style>

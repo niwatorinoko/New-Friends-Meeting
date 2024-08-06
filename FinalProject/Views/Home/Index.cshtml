@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- ページ全体のスタイルを設定 -->
+<style>
+
+    .btn-custom {
+        border-color: #258cfb; /* ボーダーの色を設定 */
+        color: #258cfb; /* 文字の色を設定 */
+        transition: background-color 0.3s, color 0.3s; /* ホバー時のトランジションを追加 */
+    }
+
+        .btn-custom:hover {
+            background-color: #258cfb; /* ホバー時の背景色を設定 */
+            color: white; /* ホバー時の文字の色を設定 */
+        }
+
+    .btn-primary-custom {
+        transition: background-color 0.3s, color 0.3s; /* ホバー時のトランジションを追加 */
+    }
+
+        .btn-primary-custom:hover {
+            background-color: #258cfb; /* ホバー時の背景色を濃くする */
+            color: white; /* ホバー時の文字の色を設定 */
+        }
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Our Community!</h1>
+    <p>
+        This is a service where people with free time can connect with each other.<br>
+        If you see a post from someone looking for company and feel like joining,<br>
+        simply show up at the specified time and place.
+    </p>
+    <p>
+        It's an easy way to meet new friends and make the most of your free time.<br>
+        Browse through the posts, find activities that interest you, and join the fun!
+    </p>
+
+    <p>
+        Created by Rean Ogasawara (1111675)
+    </p>
+    <a href="/Players/Login1" class="btn btn-outline-light btn-custom mt-3">Login</a>
+    <a href="/Players/Create" class="btn btn-primary btn-primary-custom mt-3">Register</a>
+</div>

@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+@if (TempData["message"] != null)
+{
+    <script>alert('@TempData["message"]')</script>
+}
+
+<h2>Login</h2>
+
+<form action="@Url.Action("Login1")" method="post">
+    <p>PlayerId (111111): @Html.TextBox("PlayerId", "", new { @class = "form-control" })</p>
+    <p>Password (test123): @Html.Password("PlayerPassword", "", new { @class = "form-control" })</p>
+    <button type="submit" class="btn btn-info">Login</button>
+</form>
+<br />
+<br />

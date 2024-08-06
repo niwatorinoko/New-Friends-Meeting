@@ -1,0 +1,80 @@
+# Build folders (can be generated)
+bin/
+obj/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+Generated\ Files/
+
+# Logs
+*.log
+
+# NuGet packages
+*.nupkg
+# NuGet Symbol Packages
+*.snupkg
+.nuget/
+packages/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!packages/repositories.config
+
+# Microsoft Visual Studio 2019
+.vs/
+.vscode/
+
+# Rider
+.idea/
+.idea_modules/
+
+# Resharper
+_ReSharper.Caches/
+*.DotSettings.user
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# EntityFramework
+App_Data/
+
+# SQLite database files
+*.db
+*.db-journal
+
+# SQL Server database files
+*.mdf
+*.ldf
+
+# Secrets
+secrets.json
+
+# Visual Studio Code
+.vscode/*
+
+# User-specific npm files
+node_modules/
+
+# Coverage files
+coverage/
+
+# JetBrains Rider
+.idea/
+
+# Razor temporary files
+**/*.rshtml.cs
+**/*.rshtml.vb
+
+# Other files
+*.pidb
+*.pidb-wal
+*.pidb-shm
+*.pidb-shm
+
+# OS generated files
+.DS_Store
+Thumbs.db

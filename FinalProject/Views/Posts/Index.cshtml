@@ -1,0 +1,131 @@
+﻿@model IEnumerable<FinalProject.Models.Post>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core.Fluent
+
+@{
+    ViewData["Title"] = "Index";
+    var pagedList = (IPagedList)ViewBag.postsModel;
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="mb-0">Find All Posts</h1>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-12 mb-3">
+            <div class="card tweet-card" onclick="location.href='@Url.Action("Details", "Posts", new { id = item.PostId })'">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <img src="~/Images/@(item.Player.Photo).png" alt="Player Photo" class="tweet-icon rounded-circle" />
+                        <div class="ms-3">
+                            <a href="@Url.Action("Details", "Players", new { id = item.PlayerId })" class="text-decoration-none text-muted">@Html.DisplayFor(modelItem => item.Player.PlayerName)</a>
+                            <h5 class="card-title mt-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Content)</p>
+                            <p class="card-text"><small class="text-muted">Place: @Html.DisplayFor(modelItem => item.Place)</small></p>
+                            <p class="card-text">
+                                <small class="text-muted">Date: @item.MeetingDateTime?.ToString("yyyy-MM-dd HH:mm")</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- カスタマイズされたページネーション -->
+<div class="d-flex justify-content-center mt-4">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            @if (pagedList.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", new { page = pagedList.PageNumber - 1 })" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            @for (int i = 1; i <= pagedList.PageCount; i++)
+            {
+                <li class="page-item @(i == pagedList.PageNumber ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                </li>
+            }
+            @if (pagedList.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", new { page = pagedList.PageNumber + 1 })" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+<!-- ページ数情報の追加 -->
+<div class="text-center mt-3">
+    <p class="text-muted">
+        Page @(pagedList.PageCount < pagedList.PageNumber ? 0 : pagedList.PageNumber) of @pagedList.PageCount.
+        Showing @pagedList.PageSize items per page, total @pagedList.TotalItemCount items.
+    </p>
+</div>
+
+<!-- SNSスタイルのCSS -->
+<style>
+    .tweet-card {
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .tweet-card:hover {
+            background-color: #f8f9fa;
+        }
+
+    .tweet-icon {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+    }
+
+    .card-title {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .card-text {
+        font-size: 0.9em;
+        color: #555;
+    }
+
+    .text-muted a {
+        color: inherit;
+    }
+
+        .text-muted a:hover {
+            color: #007bff;
+        }
+
+    .pagination {
+        display: inline-flex;
+    }
+
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+
+        .pagination .page-link {
+            color: #007bff;
+        }
+
+            .pagination .page-link:hover {
+                background-color: #e9ecef;
+                border-color: #dee2e6;
+            }
+</style>
