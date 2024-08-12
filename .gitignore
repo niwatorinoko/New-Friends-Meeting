@@ -79,4 +79,4 @@ coverage/
 .DS_Store
 Thumbs.db
 
-FinalProject/appsettings.json
+*appsettings.json
