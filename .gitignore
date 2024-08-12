@@ -78,3 +78,5 @@ coverage/
 # OS generated files
 .DS_Store
 Thumbs.db
+
+appsettings.json
